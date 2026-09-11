@@ -1,0 +1,6 @@
+{
+  "name": "Photo Album",
+  "description": "A clean and intuitive photo album manager for organizing, browsing, and viewing photos with albums, tags, and detail views.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
