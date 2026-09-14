@@ -4,7 +4,6 @@ import { Heart, ImageOff } from 'lucide-react';
 
 interface PhotoCardProps {
   photo: Photo;
-  albumName?: string;
   isCompact?: boolean;
   onSelectPhoto: (photo: Photo) => void;
   onToggleFavorite: (id: string, e: React.MouseEvent) => void;
@@ -13,7 +12,6 @@ interface PhotoCardProps {
 
 export const PhotoCard: React.FC<PhotoCardProps> = ({
   photo,
-  albumName,
   onSelectPhoto,
   onToggleFavorite,
   onSelectTag,
@@ -54,16 +52,9 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({
         />
       )}
 
-      {/* Top Overlay: Album Tag & Favorite Button */}
+      {/* Top Overlay: Favorite Button */}
       <div className="absolute top-3 inset-x-3 flex items-center justify-between pointer-events-none z-20">
-        {albumName ? (
-          <span className="text-[11px] font-medium px-2.5 py-1 rounded-lg bg-black/55 backdrop-blur-md text-white/95 shadow-xs">
-            {albumName}
-          </span>
-        ) : (
-          <span />
-        )}
-
+        <span />
         <button
           id={`favorite-btn-${photo.id}`}
           type="button"

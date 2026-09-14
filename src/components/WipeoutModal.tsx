@@ -33,7 +33,7 @@ export const WipeoutModal: React.FC<WipeoutModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-neutral-900 text-lg">Complete Wipeout</h3>
-              <p className="text-xs text-neutral-500">Reset and clear entire photo album</p>
+            <p className="text-xs text-neutral-500">Reset and clear your food gallery</p>
             </div>
           </div>
           <button
@@ -55,7 +55,6 @@ export const WipeoutModal: React.FC<WipeoutModalProps> = ({
             <p className="font-semibold">This action will:</p>
             <ul className="list-disc list-inside space-y-0.5 text-red-700">
               <li>Delete all <strong>{photoCount}</strong> photos currently in the library</li>
-              <li>Remove custom albums and reset album collections</li>
               <li>Clear saved gallery state in browser storage</li>
             </ul>
           </div>

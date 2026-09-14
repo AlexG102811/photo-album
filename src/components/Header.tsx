@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Plus, Image as ImageIcon, Heart, ArrowUpDown, FolderPlus, X, Trash2, RotateCcw } from 'lucide-react';
+import { Search, Plus, Image as ImageIcon, Heart, ArrowUpDown, X, Trash2, RotateCcw } from 'lucide-react';
 import { SortOption, ViewMode } from '../types';
 
 interface HeaderProps {
@@ -13,7 +13,6 @@ interface HeaderProps {
   viewMode: ViewMode;
   onViewModeChange: (mode: ViewMode) => void;
   onOpenUpload: () => void;
-  onOpenNewAlbum: () => void;
   onOpenWipeout: () => void;
   onRestoreSamples: () => void;
   totalPhotos: number;
@@ -30,7 +29,6 @@ export const Header: React.FC<HeaderProps> = ({
   viewMode,
   onViewModeChange,
   onOpenUpload,
-  onOpenNewAlbum,
   onOpenWipeout,
   onRestoreSamples,
   totalPhotos,
@@ -180,17 +178,6 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="text-xs">Restore Demos</span>
               </button>
             )}
-
-            {/* Add Album Button */}
-            <button
-              id="new-album-btn"
-              onClick={onOpenNewAlbum}
-              className="inline-flex items-center gap-1.5 px-3 py-2 bg-white border border-neutral-200 hover:bg-neutral-50 active:bg-neutral-100 text-neutral-700 rounded-xl text-sm font-medium transition-all shadow-xs"
-              title="Create a new album"
-            >
-              <FolderPlus className="w-4 h-4 text-neutral-500" />
-              <span className="hidden sm:inline">New Album</span>
-            </button>
 
             {/* Upload Button */}
             <button

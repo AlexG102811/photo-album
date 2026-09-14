@@ -1,27 +1,22 @@
 import React, { useState, useRef } from 'react';
-import { Album, Photo } from '../types';
+import { Photo } from '../types';
 import { X, UploadCloud, Link as LinkIcon, Image as ImageIcon, Plus } from 'lucide-react';
 
 interface UploadModalProps {
   isOpen: boolean;
   onClose: () => void;
-  albums: Album[];
-  defaultAlbumId: string;
   onAddPhoto: (photo: Photo) => void;
 }
 
 export const UploadModal: React.FC<UploadModalProps> = ({
   isOpen,
   onClose,
-  albums,
-  defaultAlbumId,
   onAddPhoto,
 }) => {
   const [activeTab, setActiveTab] = useState<'upload' | 'url'>('upload');
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [albumId, setAlbumId] = useState(defaultAlbumId === 'all' ? (albums[1]?.id || 'nature') : defaultAlbumId);
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState<string[]>([]);
   const [isDragging, setIsDragging] = useState(false);
@@ -128,7 +123,6 @@ export const UploadModal: React.FC<UploadModalProps> = ({
       url: previewUrl,
       title: title.trim() || 'Untitled Photo',
       description: description.trim(),
-      albumId: albumId || (albums[1]?.id ?? 'nature'),
       tags: tags.length > 0 ? tags : ['Upload'],
       date: new Date().toISOString().split('T')[0],
       favorite: false,
@@ -306,24 +300,6 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               placeholder="e.g. Sunset Over the Ridge"
               className="w-full px-3.5 py-2 text-sm bg-neutral-50 border border-neutral-200 rounded-xl focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
             />
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1">
-              Album
-            </label>
-            <select
-              id="upload-album-select"
-              value={albumId}
-              onChange={(e) => setAlbumId(e.target.value)}
-              className="w-full px-3.5 py-2 text-sm bg-neutral-50 border border-neutral-200 rounded-xl focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none cursor-pointer"
-            >
-              {albums.filter((a) => a.id !== 'all').map((alb) => (
-                <option key={alb.id} value={alb.id}>
-                  {alb.name}
-                </option>
-              ))}
-            </select>
           </div>
 
           <div>

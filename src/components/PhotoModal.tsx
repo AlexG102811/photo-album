@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Photo, Album } from '../types';
+import { Photo } from '../types';
 import {
   X,
   ChevronLeft,
@@ -11,7 +11,6 @@ import {
   Edit2,
   Check,
   Tag,
-  Folder,
   Info,
   Maximize2
 } from 'lucide-react';
@@ -19,7 +18,6 @@ import {
 interface PhotoModalProps {
   photo: Photo | null;
   photosList: Photo[];
-  albums: Album[];
   onClose: () => void;
   onToggleFavorite: (id: string, e: React.MouseEvent) => void;
   onUpdatePhoto: (updated: Photo) => void;
@@ -30,7 +28,6 @@ interface PhotoModalProps {
 export const PhotoModal: React.FC<PhotoModalProps> = ({
   photo,
   photosList,
-  albums,
   onClose,
   onToggleFavorite,
   onUpdatePhoto,
@@ -40,7 +37,6 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState('');
   const [editDescription, setEditDescription] = useState('');
-  const [editAlbumId, setEditAlbumId] = useState('');
   const [editTagsString, setEditTagsString] = useState('');
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [showDetailsPanel, setShowDetailsPanel] = useState(true);
@@ -50,7 +46,6 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
     if (photo) {
       setEditTitle(photo.title);
       setEditDescription(photo.description || '');
-      setEditAlbumId(photo.albumId);
       setEditTagsString(photo.tags.join(', '));
       setIsEditing(false);
       setShowConfirmDelete(false);
@@ -94,8 +89,6 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
 
   if (!photo) return null;
 
-  const currentAlbum = albums.find((a) => a.id === photo.albumId);
-
   const handleSaveEdit = (e: React.FormEvent) => {
     e.preventDefault();
     const updatedTags = editTagsString
@@ -107,7 +100,6 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
       ...photo,
       title: editTitle.trim() || 'Untitled Photo',
       description: editDescription.trim(),
-      albumId: editAlbumId,
       tags: updatedTags,
     });
     setIsEditing(false);
@@ -262,21 +254,6 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-neutral-400 mb-1">Album</label>
-                  <select
-                    value={editAlbumId}
-                    onChange={(e) => setEditAlbumId(e.target.value)}
-                    className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-xl text-white text-sm focus:border-blue-500 focus:outline-none"
-                  >
-                    {albums.filter(a => a.id !== 'all').map((album) => (
-                      <option key={album.id} value={album.id}>
-                        {album.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
                   <label className="block text-xs font-medium text-neutral-400 mb-1">Description</label>
                   <textarea
                     rows={3}
@@ -330,19 +307,6 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
                       {photo.description}
                     </p>
                   )}
-                </div>
-
-                {/* Album info */}
-                <div className="p-3 rounded-xl bg-neutral-800/80 border border-neutral-750 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-neutral-700 flex items-center justify-center text-neutral-300">
-                    <Folder className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] text-neutral-400 block font-medium">Album</span>
-                    <span className="text-sm font-semibold text-white">
-                      {currentAlbum ? currentAlbum.name : 'Unassigned'}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Tags */}
@@ -402,7 +366,7 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
             <div className="pt-6 border-t border-neutral-800 mt-6">
               {showConfirmDelete ? (
                 <div className="p-3 bg-red-950/40 border border-red-900/60 rounded-xl space-y-2">
-                  <p className="text-xs text-red-200">Delete this photo from your album?</p>
+                   <p className="text-xs text-red-200">Delete this photo from your gallery?</p>
                   <div className="flex items-center gap-2">
                     <button
                       id="confirm-delete-photo-btn"

@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Photo, Album, SortOption, ViewMode } from './types';
-import { INITIAL_PHOTOS, INITIAL_ALBUMS } from './data/samplePhotos';
+import { Photo, SortOption, ViewMode } from './types';
+import { INITIAL_PHOTOS } from './data/samplePhotos';
 import { Header } from './components/Header';
-import { AlbumFilterBar } from './components/AlbumFilterBar';
 import { PhotoCard } from './components/PhotoCard';
 import { PhotoModal } from './components/PhotoModal';
 import { UploadModal } from './components/UploadModal';
-import { AlbumModal } from './components/AlbumModal';
 import { WipeoutModal } from './components/WipeoutModal';
 import { Image as ImageIcon, Plus, FolderOpen, Heart, ArrowUp, RotateCcw } from 'lucide-react';
 
@@ -25,21 +23,7 @@ export function App() {
     return INITIAL_PHOTOS;
   });
 
-  const [albums, setAlbums] = useState<Album[]>(() => {
-    try {
-      const saved = localStorage.getItem('photo_album_albums_v1');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-      }
-    } catch {
-      // Fallback
-    }
-    return INITIAL_ALBUMS;
-  });
-
   // Filters and UI states
-  const [activeAlbumId, setActiveAlbumId] = useState<string>('all');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'favorites'>('all');
@@ -49,7 +33,6 @@ export function App() {
   // Modals
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
-  const [isNewAlbumOpen, setIsNewAlbumOpen] = useState(false);
   const [isWipeoutOpen, setIsWipeoutOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -61,14 +44,6 @@ export function App() {
       console.warn('Could not save photos to localStorage:', e);
     }
   }, [photos]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('photo_album_albums_v1', JSON.stringify(albums));
-    } catch (e) {
-      console.warn('Could not save albums to localStorage:', e);
-    }
-  }, [albums]);
 
   // Back to top scroll listener
   useEffect(() => {
@@ -83,11 +58,6 @@ export function App() {
   const filteredAndSortedPhotos = useMemo(() => {
     return photos
       .filter((photo) => {
-        // Album filter
-        if (activeAlbumId !== 'all' && photo.albumId !== activeAlbumId) {
-          return false;
-        }
-
         // Favorites filter
         if (selectedFilter === 'favorites' && !photo.favorite) {
           return false;
@@ -124,20 +94,11 @@ export function App() {
         }
         return 0;
       });
-  }, [photos, activeAlbumId, selectedFilter, selectedTag, searchQuery, sortOption]);
+  }, [photos, selectedFilter, selectedTag, searchQuery, sortOption]);
 
   const favoritesCount = useMemo(() => {
     return photos.filter((p) => p.favorite).length;
   }, [photos]);
-
-  const getAlbumPhotoCount = (albumId: string) => {
-    if (albumId === 'all') return photos.length;
-    return photos.filter((p) => p.albumId === albumId).length;
-  };
-
-  const currentAlbum = useMemo(() => {
-    return albums.find((a) => a.id === activeAlbumId) || albums[0];
-  }, [albums, activeAlbumId]);
 
   // Actions
   const handleToggleFavorite = (id: string, e: React.MouseEvent) => {
@@ -166,18 +127,12 @@ export function App() {
     }
   };
 
-  const handleAddAlbum = (newAlbum: Album) => {
-    setAlbums((prev) => [...prev, newAlbum]);
-    setActiveAlbumId(newAlbum.id);
-  };
-
   const handleSelectTag = (tag: string, e?: React.MouseEvent) => {
     e?.stopPropagation();
     setSelectedTag(tag);
   };
 
   const handleResetFilters = () => {
-    setActiveAlbumId('all');
     setSelectedTag(null);
     setSearchQuery('');
     setSelectedFilter('all');
@@ -185,15 +140,12 @@ export function App() {
 
   const handleConfirmWipeout = () => {
     setPhotos([]);
-    setAlbums([INITIAL_ALBUMS[0]]);
-    setActiveAlbumId('all');
     setSelectedTag(null);
     setSearchQuery('');
     setSelectedFilter('all');
     setSelectedPhoto(null);
     try {
       localStorage.setItem('photo_album_photos_v1', JSON.stringify([]));
-      localStorage.setItem('photo_album_albums_v1', JSON.stringify([INITIAL_ALBUMS[0]]));
     } catch (e) {
       console.warn('Error clearing localStorage:', e);
     }
@@ -201,8 +153,6 @@ export function App() {
 
   const handleRestoreSamples = () => {
     setPhotos(INITIAL_PHOTOS);
-    setAlbums(INITIAL_ALBUMS);
-    setActiveAlbumId('all');
     setSelectedTag(null);
     setSearchQuery('');
     setSelectedFilter('all');
@@ -229,20 +179,9 @@ export function App() {
         viewMode={viewMode}
         onViewModeChange={setViewMode}
         onOpenUpload={() => setIsUploadOpen(true)}
-        onOpenNewAlbum={() => setIsNewAlbumOpen(true)}
         onOpenWipeout={() => setIsWipeoutOpen(true)}
         onRestoreSamples={handleRestoreSamples}
         totalPhotos={photos.length}
-      />
-
-      {/* Album Pills & Filter Bar */}
-      <AlbumFilterBar
-        albums={albums}
-        activeAlbumId={activeAlbumId}
-        onSelectAlbum={setActiveAlbumId}
-        getAlbumPhotoCount={getAlbumPhotoCount}
-        selectedTag={selectedTag}
-        onClearTag={() => setSelectedTag(null)}
       />
 
       {/* Main Content Area */}
@@ -255,9 +194,7 @@ export function App() {
               <h2 id="gallery-main-title" className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
                 {selectedFilter === 'favorites'
                   ? 'Favorites Gallery (3×3)'
-                  : activeAlbumId === 'all'
-                  ? '3×3 Photo Gallery'
-                  : `${currentAlbum.name} (3×3)`}
+                  : 'Food Gallery'}
               </h2>
               {selectedFilter === 'favorites' && (
                 <Heart className="w-5 h-5 fill-rose-500 text-rose-500" />
@@ -266,9 +203,7 @@ export function App() {
             <p className="text-xs sm:text-sm text-neutral-500 mt-1">
               {selectedFilter === 'favorites'
                 ? 'Your starred photos displayed in an equal-dimension 3×3 gallery'
-                : activeAlbumId === 'all'
-                ? 'Curated 3×3 gallery of equal-dimension photos with titles and album collections'
-                : currentAlbum.description || `Viewing ${filteredAndSortedPhotos.length} photos in this collection`}
+                : 'Curated 3×3 gallery of equal-dimension photos with titles, tags, and descriptions'}
             </p>
           </div>
 
@@ -290,12 +225,10 @@ export function App() {
             }`}
           >
             {filteredAndSortedPhotos.map((photo) => {
-              const album = albums.find((a) => a.id === photo.albumId);
               return (
                 <PhotoCard
                   key={photo.id}
                   photo={photo}
-                  albumName={activeAlbumId === 'all' ? album?.name : undefined}
                   isCompact={viewMode === 'compact'}
                   onSelectPhoto={setSelectedPhoto}
                   onToggleFavorite={handleToggleFavorite}
@@ -321,7 +254,7 @@ export function App() {
                 ? 'Your photo library is currently empty. You can upload new photos or restore the original demo collection at any time.'
                 : searchQuery || selectedTag || selectedFilter === 'favorites'
                 ? "We couldn't find any photos matching your current search or filter criteria."
-                : 'This album is currently empty. Upload photos to start filling this collection!'}
+                : 'Upload photos to start filling your gallery!'}
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3">
@@ -375,7 +308,6 @@ export function App() {
         <PhotoModal
           photo={selectedPhoto}
           photosList={filteredAndSortedPhotos}
-          albums={albums}
           onClose={() => setSelectedPhoto(null)}
           onToggleFavorite={handleToggleFavorite}
           onUpdatePhoto={handleUpdatePhoto}
@@ -388,16 +320,7 @@ export function App() {
       <UploadModal
         isOpen={isUploadOpen}
         onClose={() => setIsUploadOpen(false)}
-        albums={albums}
-        defaultAlbumId={activeAlbumId}
         onAddPhoto={handleAddPhoto}
-      />
-
-      {/* New Album Modal */}
-      <AlbumModal
-        isOpen={isNewAlbumOpen}
-        onClose={() => setIsNewAlbumOpen(false)}
-        onAddAlbum={handleAddAlbum}
       />
 
       {/* Wipeout Confirmation Modal */}
@@ -418,8 +341,6 @@ export function App() {
           </div>
           <div className="flex items-center gap-4 text-neutral-500">
             <span>{photos.length} photos</span>
-            <span>•</span>
-            <span>{albums.length - 1} custom albums</span>
             <span>•</span>
             <span>Stored locally</span>
           </div>

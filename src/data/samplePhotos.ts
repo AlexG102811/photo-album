@@ -1,36 +1,4 @@
-import { Album, Photo } from '../types';
-
-export const INITIAL_ALBUMS: Album[] = [
-  {
-    id: 'all',
-    name: 'All Photos',
-    description: 'Every photo in your library',
-  },
-  {
-    id: 'nature',
-    name: 'Nature & Landscapes',
-    description: 'Mountains, forests, oceans, and tranquility',
-    coverPhotoUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'travel',
-    name: 'Wanderlust & Travel',
-    description: 'Memorable adventures and journeys around the world',
-    coverPhotoUrl: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'architecture',
-    name: 'Architecture & Design',
-    description: 'Urban geometries, classical structures, and clean lines',
-    coverPhotoUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'moments',
-    name: 'Cozy Moments',
-    description: 'Warm coffee, quiet books, and golden hour light',
-    coverPhotoUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
-  },
-];
+import { Photo } from '../types';
 
 export const INITIAL_PHOTOS: Photo[] = [
   {
@@ -38,7 +6,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85',
     title: 'Alpine Lake Reflection',
     description: 'Clear mirror reflection of misty mountain peaks at dawn.',
-    albumId: 'nature',
     tags: ['Mountain', 'Lake', 'Sunrise', 'Reflection'],
     date: '2026-08-14',
     favorite: true,
@@ -51,7 +18,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=85',
     title: 'Coastal Voyage in Amalfi',
     description: 'Cliffside colorful houses overlooking turquoise Mediterranean waters.',
-    albumId: 'travel',
     tags: ['Coast', 'Italy', 'Summer', 'Architecture'],
     date: '2026-07-22',
     favorite: true,
@@ -64,7 +30,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85',
     title: 'Modern Geometric Facade',
     description: 'Glass and steel symmetry soaring into a crisp blue sky.',
-    albumId: 'architecture',
     tags: ['Minimalist', 'Skyline', 'Glass', 'Urban'],
     date: '2026-06-08',
     favorite: false,
@@ -77,7 +42,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=85',
     title: 'Misty Valley Pines',
     description: 'Layers of morning fog cascading over evergreen forested hills.',
-    albumId: 'nature',
     tags: ['Forest', 'Fog', 'Atmosphere', 'Green'],
     date: '2026-05-30',
     favorite: false,
@@ -90,7 +54,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
     title: 'Tropical White Sand Coast',
     description: 'Gentle turquoise ocean tide washing over pristine sandy beach.',
-    albumId: 'travel',
     tags: ['Beach', 'Ocean', 'Peaceful', 'Tropics'],
     date: '2026-04-19',
     favorite: true,
@@ -103,7 +66,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=85',
     title: 'Golden Hour Reading Spot',
     description: 'Sunlight filtering through sheer curtains onto warm cedar floor.',
-    albumId: 'moments',
     tags: ['Sunlight', 'Interior', 'Relax', 'Reading'],
     date: '2026-03-12',
     favorite: false,
@@ -116,7 +78,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=85',
     title: 'Morning Espresso & Notebook',
     description: 'Fresh pour-over coffee beside a fountain pen and sketchbook.',
-    albumId: 'moments',
     tags: ['Coffee', 'Morning', 'Journaling', 'Cozy'],
     date: '2026-02-28',
     favorite: true,
@@ -129,7 +90,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=1200&q=85',
     title: 'Nightfall Over City Lights',
     description: 'Long exposure of urban streets illuminated by twilight traffic glow.',
-    albumId: 'architecture',
     tags: ['Night', 'Lights', 'City', 'Twilight'],
     date: '2026-01-15',
     favorite: false,
@@ -142,7 +102,6 @@ export const INITIAL_PHOTOS: Photo[] = [
     url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85',
     title: 'Starry Sky Over Snowfields',
     description: 'Milky Way stretching across jagged snow-capped alpine peaks.',
-    albumId: 'nature',
     tags: ['NightSky', 'Stars', 'Snow', 'Mountains'],
     date: '2025-12-24',
     favorite: true,
