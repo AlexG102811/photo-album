@@ -413,7 +413,7 @@ export function App() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <ImageIcon className="w-4 h-4 text-neutral-400" />
-            <span className="font-semibold text-neutral-700">Photo Album</span>
+            <span className="font-semibold text-neutral-700">Food Gallery</span>
             <span>— Personal Gallery & Organizer</span>
           </div>
           <div className="flex items-center gap-4 text-neutral-500">

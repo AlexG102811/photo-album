@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <ImageIcon className="w-5 h-5" />
               </div>
               <div>
-                <h1 className="text-xl font-bold tracking-tight text-neutral-900 leading-tight">Photo Album</h1>
+                <h1 className="text-xl font-bold tracking-tight text-neutral-900 leading-tight">Food Gallery</h1>
                 <p className="text-xs text-neutral-500 font-medium">
                   {totalPhotos} {totalPhotos === 1 ? 'photo' : 'photos'} in library
                 </p>
