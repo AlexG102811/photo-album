@@ -302,6 +302,12 @@ export function App() {
           </div>
         )}
 
+        {/* Blank space below the gallery */}
+        <section
+          aria-hidden="true"
+          className="h-64 sm:h-80 mt-8"
+        />
+
       </main>
 
       {/* Back to top floating button */}
