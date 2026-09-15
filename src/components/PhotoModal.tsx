@@ -232,7 +232,7 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
               /* Edit Form */
               <form onSubmit={handleSaveEdit} className="space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
-                  <h4 className="font-semibold text-white text-base">Edit Photo Info</h4>
+                  <h4 className="font-semibold text-white text-base">Edit Food Details</h4>
                   <button
                     type="button"
                     onClick={() => setIsEditing(false)}
@@ -243,12 +243,14 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-neutral-400 mb-1">Title</label>
+                  <label className="block text-xs font-medium text-neutral-400 mb-1">Food Title</label>
                   <input
+                    id="edit-food-title-input"
                     type="text"
                     value={editTitle}
                     onChange={(e) => setEditTitle(e.target.value)}
                     required
+                    aria-label="Food title"
                     className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-xl text-white text-sm focus:border-blue-500 focus:outline-none"
                   />
                 </div>
@@ -297,7 +299,8 @@ export const PhotoModal: React.FC<PhotoModalProps> = ({
                       id="edit-photo-btn"
                       onClick={() => setIsEditing(true)}
                       className="p-1.5 text-neutral-400 hover:text-white rounded-lg hover:bg-neutral-800 transition-colors"
-                      title="Edit photo details"
+                       title="Edit food title and details"
+                       aria-label="Edit food title and details"
                     >
                       <Edit2 className="w-4 h-4" />
                     </button>
