@@ -305,7 +305,7 @@ export function App() {
         {/* Blank space below the gallery */}
         <section
           aria-hidden="true"
-          className="h-64 sm:h-80 mt-8"
+          className="h-80 sm:h-96 mt-8"
         />
 
       </main>
