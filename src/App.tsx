@@ -163,7 +163,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex flex-col selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-black flex flex-col selection:bg-blue-900 selection:text-blue-100">
       
       {/* App Header */}
       <Header
@@ -188,10 +188,10 @@ export function App() {
       <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         
         {/* Gallery Title Banner */}
-        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-neutral-200">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-neutral-800">
           <div>
             <div className="flex items-center gap-2.5">
-              <h2 id="gallery-main-title" className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
+              <h2 id="gallery-main-title" className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 {selectedFilter === 'favorites'
                   ? 'Favorites Gallery (3×3)'
                   : 'Food Gallery'}
@@ -200,7 +200,7 @@ export function App() {
                 <Heart className="w-5 h-5 fill-rose-500 text-rose-500" />
               )}
             </div>
-            <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+              <p className="text-xs sm:text-sm text-neutral-400 mt-1">
               {selectedFilter === 'favorites'
                 ? 'Your starred photos displayed in an equal-dimension 3×3 gallery'
                 : 'Curated 3×3 gallery of equal-dimension photos with titles, tags, and descriptions'}
@@ -208,7 +208,7 @@ export function App() {
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-xs font-semibold text-neutral-500 bg-neutral-100 px-3 py-1 rounded-full">
+            <span className="text-xs font-semibold text-neutral-300 bg-neutral-900 px-3 py-1 rounded-full">
               {filteredAndSortedPhotos.length === 9 ? '3×3 Grid (9 Photos)' : `${filteredAndSortedPhotos.length} of ${photos.length} Photos`}
             </span>
           </div>
@@ -243,10 +243,10 @@ export function App() {
             id="empty-photos-state"
             className="flex flex-col items-center justify-center py-20 px-4 text-center max-w-md mx-auto"
           >
-            <div className="w-16 h-16 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-neutral-400 mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-500 mb-4">
               <FolderOpen className="w-8 h-8" />
             </div>
-            <h3 className="text-base font-bold text-neutral-900 mb-1">
+            <h3 className="text-base font-bold text-white mb-1">
               {photos.length === 0 ? 'Photo Library Wiped Clean' : 'No photos found'}
             </h3>
             <p className="text-xs text-neutral-500 leading-relaxed mb-6">
@@ -262,7 +262,7 @@ export function App() {
                 <button
                   id="reset-filters-btn"
                   onClick={handleResetFilters}
-                  className="px-4 py-2 text-xs font-semibold bg-white border border-neutral-200 hover:bg-neutral-50 text-neutral-700 rounded-xl transition-colors shadow-xs"
+                  className="px-4 py-2 text-xs font-semibold bg-neutral-900 border border-neutral-700 hover:bg-neutral-800 text-neutral-200 rounded-xl transition-colors shadow-xs"
                 >
                   Clear Filters
                 </button>
@@ -271,7 +271,7 @@ export function App() {
                 <button
                   id="empty-restore-btn"
                   onClick={handleRestoreSamples}
-                  className="px-4 py-2 text-xs font-semibold bg-white border border-neutral-200 hover:bg-neutral-50 text-neutral-700 rounded-xl transition-colors inline-flex items-center gap-1.5 shadow-xs"
+                  className="px-4 py-2 text-xs font-semibold bg-neutral-900 border border-neutral-700 hover:bg-neutral-800 text-neutral-200 rounded-xl transition-colors inline-flex items-center gap-1.5 shadow-xs"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   Restore Demo Photos
@@ -332,11 +332,11 @@ export function App() {
       />
 
       {/* Footer */}
-      <footer className="border-t border-neutral-200/80 bg-white py-6 mt-12 text-center text-xs text-neutral-400">
+      <footer className="border-t border-neutral-800 bg-black py-6 mt-12 text-center text-xs text-neutral-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <ImageIcon className="w-4 h-4 text-neutral-400" />
-            <span className="font-semibold text-neutral-700">Food Gallery</span>
+            <ImageIcon className="w-4 h-4 text-neutral-500" />
+            <span className="font-semibold text-neutral-200">Food Gallery</span>
             <span>— Personal Gallery & Organizer</span>
           </div>
           <div className="flex items-center gap-4 text-neutral-500">
