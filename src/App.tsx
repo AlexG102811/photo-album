@@ -163,10 +163,23 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col selection:bg-blue-900 selection:text-blue-100">
+    <div className="relative min-h-screen bg-black flex flex-col selection:bg-blue-900 selection:text-blue-100">
+      <video
+        className="fixed inset-0 z-0 h-full w-full object-cover opacity-45"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/food-gallery-background.mp4" type="video/mp4" />
+      </video>
+      <div className="pointer-events-none fixed inset-0 z-0 bg-black/60" aria-hidden="true" />
       
       {/* App Header */}
-      <Header
+      <div className="relative z-10 flex flex-col flex-1">
+        <Header
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         selectedFilter={selectedFilter}
@@ -182,10 +195,10 @@ export function App() {
         onOpenWipeout={() => setIsWipeoutOpen(true)}
         onRestoreSamples={handleRestoreSamples}
         totalPhotos={photos.length}
-      />
+        />
 
       {/* Main Content Area */}
-      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main id="main-content" className="relative flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         
         {/* Gallery Title Banner */}
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-neutral-800">
@@ -332,7 +345,7 @@ export function App() {
       />
 
       {/* Footer */}
-      <footer className="border-t border-neutral-800 bg-black py-6 mt-12 text-center text-xs text-neutral-500">
+      <footer className="relative border-t border-neutral-800 bg-black/80 py-6 mt-12 text-center text-xs text-neutral-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <ImageIcon className="w-4 h-4 text-neutral-500" />
@@ -346,6 +359,7 @@ export function App() {
           </div>
         </div>
       </footer>
+      </div>
 
     </div>
   );
