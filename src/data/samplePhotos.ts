@@ -132,5 +132,17 @@ export const INITIAL_PHOTOS: Photo[] = [
     size: '34 KB',
     width: 452,
     height: 678,
+  },
+  {
+    id: 'photo-12',
+    url: '/steak.jpeg',
+    title: 'Steak',
+    description: 'Juicy grilled steak finished with herbs and rosemary.',
+    tags: ['food'],
+    date: '2026-09-16',
+    favorite: false,
+    size: '69 KB',
+    width: 554,
+    height: 554,
   }
 ];
