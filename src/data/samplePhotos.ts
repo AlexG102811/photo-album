@@ -192,5 +192,17 @@ export const INITIAL_PHOTOS: Photo[] = [
     size: '68 KB',
     width: 452,
     height: 678,
+  },
+  {
+    id: 'photo-17',
+    url: '/grapes.jpeg',
+    title: 'Grapes',
+    description: 'Fresh green grapes growing together on the vine.',
+    tags: ['food'],
+    date: '2026-09-16',
+    favorite: false,
+    size: '22 KB',
+    width: 447,
+    height: 447,
   }
 ];
