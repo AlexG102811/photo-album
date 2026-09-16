@@ -168,5 +168,17 @@ export const INITIAL_PHOTOS: Photo[] = [
     size: '240 KB',
     width: 802,
     height: 1024,
+  },
+  {
+    id: 'photo-15',
+    url: '/pizza.jpeg',
+    title: 'Pizza',
+    description: 'Crispy pepperoni pizza slices with bubbling cheese and golden crust.',
+    tags: ['food'],
+    date: '2026-09-16',
+    favorite: false,
+    size: '86 KB',
+    width: 452,
+    height: 678,
   }
 ];
