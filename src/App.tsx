@@ -165,7 +165,7 @@ export function App() {
   return (
     <div className="relative min-h-screen bg-black flex flex-col selection:bg-blue-900 selection:text-blue-100">
       <video
-        className="fixed inset-0 z-0 h-full w-full object-cover opacity-45"
+        className="fixed inset-0 z-0 h-full w-full object-cover opacity-60"
         autoPlay
         loop
         muted
@@ -175,7 +175,7 @@ export function App() {
       >
         <source src="/food-gallery-background.mp4" type="video/mp4" />
       </video>
-      <div className="pointer-events-none fixed inset-0 z-0 bg-black/60" aria-hidden="true" />
+      <div className="pointer-events-none fixed inset-0 z-0 bg-black/45" aria-hidden="true" />
       
       {/* App Header */}
       <div className="relative z-10 flex flex-col flex-1">
