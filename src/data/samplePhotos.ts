@@ -124,7 +124,7 @@ export const INITIAL_PHOTOS: Photo[] = [
   {
     id: 'photo-11',
     url: '/brownioes.jpeg',
-    title: 'brownies',
+    title: 'Brownies',
     description: 'Rich chocolate brownies stacked with crisp edges and soft centers.',
     tags: ['food'],
     date: '2026-09-16',
@@ -204,5 +204,17 @@ export const INITIAL_PHOTOS: Photo[] = [
     size: '22 KB',
     width: 447,
     height: 447,
+  },
+  {
+    id: 'photo-18',
+    url: '/watermelon.jpeg',
+    title: 'Watermelon',
+    description: 'Juicy watermelon slices served chilled and ready to enjoy.',
+    tags: ['food'],
+    date: '2026-09-16',
+    favorite: false,
+    size: '32 KB',
+    width: 677,
+    height: 453,
   }
 ];

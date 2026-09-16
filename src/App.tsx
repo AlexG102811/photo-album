@@ -19,8 +19,8 @@ export function App() {
             const savedIds = new Set(parsed.map((photo) => photo.id));
             const newlyAddedPhotos = INITIAL_PHOTOS.filter((photo) => !savedIds.has(photo.id));
             const correctedPhotos = parsed.map((photo) =>
-              photo.id === 'photo-11' && ['brownioes', 'brownoes'].includes(photo.title.toLowerCase())
-                ? { ...photo, title: 'brownies' }
+              photo.id === 'photo-11' && ['brownioes', 'brownoes', 'brownies'].includes(photo.title.toLowerCase())
+                ? { ...photo, title: 'Brownies' }
                 : photo
             );
             return [...correctedPhotos, ...newlyAddedPhotos];
