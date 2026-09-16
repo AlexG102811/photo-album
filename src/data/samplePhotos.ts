@@ -108,5 +108,17 @@ export const INITIAL_PHOTOS: Photo[] = [
     size: '5.2 MB',
     width: 2800,
     height: 1867,
+  },
+  {
+    id: 'photo-10',
+    url: '/cookie.jpeg',
+    title: 'Cookie',
+    description: 'Fresh chocolate chip cookies with warm, melty chocolate pieces.',
+    tags: ['food'],
+    date: '2026-09-16',
+    favorite: false,
+    size: '56 KB',
+    width: 452,
+    height: 678,
   }
 ];

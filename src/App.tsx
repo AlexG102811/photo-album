@@ -15,7 +15,11 @@ export function App() {
       const saved = localStorage.getItem('photo_album_photos_v1');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const savedIds = new Set(parsed.map((photo) => photo.id));
+            const newlyAddedPhotos = INITIAL_PHOTOS.filter((photo) => !savedIds.has(photo.id));
+            return [...parsed, ...newlyAddedPhotos];
+          }
       }
     } catch {
       // Fallback
