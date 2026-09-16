@@ -120,5 +120,17 @@ export const INITIAL_PHOTOS: Photo[] = [
     size: '56 KB',
     width: 452,
     height: 678,
+  },
+  {
+    id: 'photo-11',
+    url: '/brownioes.jpeg',
+    title: 'brownies',
+    description: 'Rich chocolate brownies stacked with crisp edges and soft centers.',
+    tags: ['food'],
+    date: '2026-09-16',
+    favorite: false,
+    size: '34 KB',
+    width: 452,
+    height: 678,
   }
 ];
