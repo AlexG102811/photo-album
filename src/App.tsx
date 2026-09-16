@@ -8,6 +8,10 @@ import { UploadModal } from './components/UploadModal';
 import { WipeoutModal } from './components/WipeoutModal';
 import { Image as ImageIcon, Plus, FolderOpen, Heart, ArrowUp, RotateCcw } from 'lucide-react';
 
+const LEGACY_DEMO_PHOTO_IDS = new Set(
+  Array.from({ length: 9 }, (_, index) => `photo-${index + 1}`)
+);
+
 export function App() {
   // LocalStorage initialization
   const [photos, setPhotos] = useState<Photo[]>(() => {
@@ -16,9 +20,10 @@ export function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            const savedIds = new Set(parsed.map((photo) => photo.id));
+            const retainedPhotos = parsed.filter((photo) => !LEGACY_DEMO_PHOTO_IDS.has(photo.id));
+            const savedIds = new Set(retainedPhotos.map((photo) => photo.id));
             const newlyAddedPhotos = INITIAL_PHOTOS.filter((photo) => !savedIds.has(photo.id));
-            const correctedPhotos = parsed.map((photo) =>
+            const correctedPhotos = retainedPhotos.map((photo) =>
               photo.id === 'photo-11' && ['brownioes', 'brownoes', 'brownies'].includes(photo.title.toLowerCase())
                 ? { ...photo, title: 'Brownies' }
                 : photo
