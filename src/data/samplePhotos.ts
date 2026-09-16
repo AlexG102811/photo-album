@@ -180,5 +180,17 @@ export const INITIAL_PHOTOS: Photo[] = [
     size: '86 KB',
     width: 452,
     height: 678,
+  },
+  {
+    id: 'photo-16',
+    url: '/caesar-salad.jpeg',
+    title: 'Caesar salad',
+    description: 'Crisp romaine, grilled chicken, parmesan, and golden croutons.',
+    tags: ['food'],
+    date: '2026-09-16',
+    favorite: false,
+    size: '68 KB',
+    width: 452,
+    height: 678,
   }
 ];
